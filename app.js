@@ -1,11 +1,15 @@
 //Google maps API key
 //AIzaSyCbLFtIwl7aH8u4vkTY0I0X5oZmLuezv3A
 
-// $(document).ready(function(){
-//   getMap();
-// });
-
-//var src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCbLFtIwl7aH8u4vkTY0I0X5oZmLuezv3A";
+//Yelp
+//Consumer key
+//-JMYtpcAGrf1LmRKCV5IpQ
+//Consumer Secret
+//DgpUuc1DIve5fsY6EsqGQh67dU4
+//Token
+//As1Vd07pR30RfoqqVT9ZK_6urD_D56dB
+//Token Secret
+//x9kDLVJfCnrkNc220GQG3dOx-9k
 
 var map = document.querySelector(".googleMap");
 
@@ -31,12 +35,3 @@ function getMap () {
     getMap();
   });
 }
-
-// function myMap() {
-//   var mapProp = {
-//     center: new google.maps.LatLng(39.7392, -104.9903),
-//     zoom: 13,
-//   };
-//   var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-// }
-// var src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCbLFtIwl7aH8u4vkTY0I0X5oZmLuezv3A&callback=myMap";
