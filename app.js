@@ -7,11 +7,9 @@
 //Consumer Secret
 //DgpUuc1DIve5fsY6EsqGQh67dU4
 //Token
-//As1Vd07pR30RfoqqVT9ZK_6urD_D56dB
+//aomdOa44QuYgNuNKB9P9wIeNMvatbI03
 //Token Secret
-//x9kDLVJfCnrkNc220GQG3dOx-9k
-
-var map = document.querySelector(".googleMap");
+//zYCM9mUp7luRkgXO_JIcgNroKyE
 
 var loc = {
   lat: 39.7392,
@@ -33,5 +31,25 @@ function getMap () {
       lng: event.latLng.lng()
     };
     getMap();
+    console.log(loc);
+    getData();
   });
 }
+
+function getData (data) {
+  var timestamp = getTimestamp();
+  console.log(timestamp);
+  var nonce = getNonce();
+  console.log(nonce);
+  $.get("https://galvanize-cors.herokuapp.com/https://api.yelp.com/v2/search/?oauth_consumer_key=-JMYtpcAGrf1LmRKCV5IpQ&oauth_token=aomdOa44QuYgNuNKB9P9wIeNMvatbI03&oauth_signature_method=HMAC-SHA1&oauth_timestamp=" + timestamp + "&oauth_nonce=" + nonce + "&oauth_version=1.0&oauth_signature=zYCM9mUp7luRkgXO_JIcgNroKyE=&location=Denver, CO&category_filter=breweries");
+}
+
+function getTimestamp () {
+  return Math.floor(Date.now() / 1000);
+}
+
+function getNonce () {
+  return Math.floor(Math.random() * 1000000);
+}
+
+console.log(getData());

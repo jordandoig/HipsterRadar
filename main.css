@@ -9,8 +9,36 @@ main {
   margin: 5% 0;
 }
 
-footer {
-  margin-top: 5%;
+header {
   background-color: #C5C5C5;
   height: 100px;
+}
+
+footer {
+  margin-top: 3%;
+  background-color: #C5C5C5;
+  height: 100px;
+}
+
+.googleMap {
+  height: 400px;
+}
+
+.ratingBox {
+  height: 400px;
+  display: flex;
+  /*flex-direction: column;*/
+  justify-content: space-between;
+}
+
+.hipsterImage {
+  background-color: red;
+  height: 100%;
+  width: 75%;
+}
+
+.hipsterRating {
+  background-color: black;
+  height: 100%;
+  width: 20%;
 }
