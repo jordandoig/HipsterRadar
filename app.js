@@ -31,25 +31,12 @@ function getMap () {
       lng: event.latLng.lng()
     };
     getMap();
-    console.log(loc);
-    getData();
+    getData(loc);
   });
 }
 
-function getData (data) {
-  var timestamp = getTimestamp();
-  console.log(timestamp);
-  var nonce = getNonce();
-  console.log(nonce);
-  $.get("https://galvanize-cors.herokuapp.com/https://api.yelp.com/v2/search/?oauth_consumer_key=-JMYtpcAGrf1LmRKCV5IpQ&oauth_token=aomdOa44QuYgNuNKB9P9wIeNMvatbI03&oauth_signature_method=HMAC-SHA1&oauth_timestamp=" + timestamp + "&oauth_nonce=" + nonce + "&oauth_version=1.0&oauth_signature=zYCM9mUp7luRkgXO_JIcgNroKyE=&location=Denver, CO&category_filter=breweries");
-}
 
-function getTimestamp () {
-  return Math.floor(Date.now() / 1000);
-}
 
-function getNonce () {
-  return Math.floor(Math.random() * 1000000);
+function getData (loc) {
+  $.post("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v2/search/?cll=" + loc.lat + "," + loc.lng + "&category_filter=breweries");
 }
-
-console.log(getData());
