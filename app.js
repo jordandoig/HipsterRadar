@@ -36,21 +36,36 @@ function getMap () {
 }
 
 function getData (loc) {
-  $.post("https://galvanize-cors.herokuapp.com/https://api.yelp.com/v2/search/?cll=" + loc.lat + "," + loc.lng + "&category_filter=breweries");
+  var latLng = loc.lat.toString() + "," + loc.lng.toString();
+  var count = 0;
+  $.post("https://yelp-api-q1.herokuapp.com/search/", {location: latLng,  "radius_filter": 1000, 'category_filter': 'breweries,vinyl_records,divebars,comicbooks,bikes,musicvenues,usedbooks,barbers,thrift_stores,tattoo,vegan,vintage'}, function(data){
+    count += parseInt(data.total);
+    postRating(count);
+    postPicture(count);
+    console.log(count);
+  });
 }
 
 function postRating (number) {
-
+  var num = number * (10 / 6);
+  if (num <= 33) {
+    $(".rankingBar").attr("style", "background-color: green; height: " + num + "%;");
+  } else if (num <= 66) {
+    $(".rankingBar").attr("style", "background-color: yellow; height: " + num + "%;");
+  } else {
+    $(".rankingBar").attr("style", "background-color: red; height: " + num + "%;");
+  }
 }
 
 function postPicture (number) {
-  var num = number * 100;
-  if (num > 1400) {
-    var numRand = Math.floor(Math.random() * 12);
+  var num = Math.round(number / 6);
+  if (num > 10) {
+    var numRand = Math.floor(Math.random() * 21);
     $(".hipsterImage").attr("src", "Images/HipsterOverload/" + numRand + ".png");
   } else {
     $(".hipsterImage").attr("src", "Images/HipsterLevels/HipsterLevel" + num + ".png");
   }
 }
 
-//postPicture(15);
+postPicture(39);
+postRating(60);

@@ -32,13 +32,19 @@ footer {
 }
 
 .hipsterImage {
-  background-color: red;
+  /*background-color: red;*/
   height: 100%;
   width: 75%;
 }
 
 .hipsterRating {
-  background-color: black;
+  display: flex;
+  align-items: flex-end;
+  background-color: #c5c5c5;
   height: 100%;
   width: 20%;
+}
+
+.rankingBar {
+  width: 100%;
 }
