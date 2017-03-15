@@ -35,8 +35,22 @@ function getMap () {
   });
 }
 
-
-
 function getData (loc) {
-  $.post("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v2/search/?cll=" + loc.lat + "," + loc.lng + "&category_filter=breweries");
+  $.post("https://galvanize-cors.herokuapp.com/https://api.yelp.com/v2/search/?cll=" + loc.lat + "," + loc.lng + "&category_filter=breweries");
 }
+
+function postRating (number) {
+
+}
+
+function postPicture (number) {
+  var num = number * 100;
+  if (num > 1400) {
+    var numRand = Math.floor(Math.random() * 12);
+    $(".hipsterImage").attr("src", "Images/HipsterOverload/" + numRand + ".png");
+  } else {
+    $(".hipsterImage").attr("src", "Images/HipsterLevels/HipsterLevel" + num + ".png");
+  }
+}
+
+//postPicture(15);
