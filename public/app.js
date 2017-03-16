@@ -11,6 +11,7 @@
 //Token Secret
 //zYCM9mUp7luRkgXO_JIcgNroKyE
 
+var swapping = false;
 
 var loc = {
   lat: 39.7392,
@@ -20,7 +21,7 @@ var loc = {
 postPicture(39);
 postRating(39);
 
-function getMap () {
+function getMap() {
   var map = new google.maps.Map(document.querySelector(".googleMap"), {
     zoom: 13,
     center: loc
@@ -39,17 +40,21 @@ function getMap () {
   });
 }
 
-function getData (loc) {
+function getData(loc) {
   var latLng = loc.lat.toString() + "," + loc.lng.toString();
   var count = 0;
-  $.post("https://yelp-api-q1.herokuapp.com/search/", {location: latLng,  "radius_filter": 1000, 'category_filter': 'breweries,vinyl_records,divebars,comicbooks,bikes,musicvenues,usedbooks,barbers,thrift_stores,tattoo,vegan,vintage'}, function(data){
+  $.post("https://yelp-api-q1.herokuapp.com/search/", {
+    location: latLng,
+    "radius_filter": 1000,
+    'category_filter': 'breweries,vinyl_records,divebars,comicbooks,bikes,musicvenues,usedbooks,barbers,thrift_stores,tattoo,vegan,vintage'
+  }, function(data) {
     count += parseInt(data.total);
     postRating(count);
     postPicture(count);
   });
 }
 
-function postRating (number) {
+function postRating(number) {
   var num = Math.round(number * (10 / 6));
   if (num <= 33) {
     $(".rankingBar").attr("style", "background-color: green; height: " + num + "%;");
@@ -59,13 +64,21 @@ function postRating (number) {
     $(".rankingBar").attr("style", "background-color: red; height: " + num + "%;");
   }
   if (num > 100) {
+    if (swapping) {
+      clearInterval(swap);
+    }
+    swapping = true;
     hipsterOverload();
   } else {
     resetCSS();
+    if (swapping) {
+      clearInterval(swap);
+      swapping = false;
+    }
   }
 }
 
-function postPicture (number) {
+function postPicture(number) {
   var num = Math.round(number / 6);
   if (num > 10) {
     var numRand = Math.floor(Math.random() * 21);
@@ -75,12 +88,33 @@ function postPicture (number) {
   }
 }
 
-function hipsterOverload () {
-  // $("body").css({"background-color": "black", "color": "yellow"});
-  $("body").addClass("overload");
+function hipsterOverload() {
+  // $("body").addClass("overload");
+  overloading();
 }
 
-function resetCSS () {
-  // $("body").css({"background-color": "white", "color": "black"});
+function resetCSS() {
   $("body").removeClass("overload");
+  $("body").removeClass("overload1");
+  $("header").removeClass("overload");
+  $("header").removeClass("overload1");
+  $("footer").removeClass("overload");
+  $("footer").removeClass("overload1");
 }
+
+function overloading() {
+  $("body").addClass("overload1");
+  $("header").addClass("overload");
+  $("footer").addClass("overload");
+  swap = setInterval(function() {
+    $("body").toggleClass("overload");
+    $("body").toggleClass("overload1");
+    $("header").toggleClass("overload");
+    $("header").toggleClass("overload1");
+    $("footer").toggleClass("overload");
+    $("footer").toggleClass("overload1");
+  }, 100);
+}
+
+// $("body").removeClass("overload");
+// $("body").addClass("overload1");
