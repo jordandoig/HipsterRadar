@@ -26,6 +26,7 @@ footer {
 
 .ratingBox {
   height: 400px;
+  width: 480.33px;
   display: flex;
   /*flex-direction: column;*/
   justify-content: space-between;
@@ -34,7 +35,7 @@ footer {
 .hipsterImage {
   /*background-color: red;*/
   height: 100%;
-  width: 75%;
+  width: 338px;
 }
 
 .hipsterRating {
@@ -42,11 +43,11 @@ footer {
   align-items: flex-end;
   background-color: #c5c5c5;
   height: 100%;
-  width: 20%;
+  width: 90.06px;
 }
 
 .rankingBar {
-  width: 100%;
+  width: 90.06px;
 }
 
 .overload {

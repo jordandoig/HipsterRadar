@@ -1,16 +1,6 @@
 //Google maps API key
 //AIzaSyCbLFtIwl7aH8u4vkTY0I0X5oZmLuezv3A
 
-//Yelp
-//Consumer key
-//-JMYtpcAGrf1LmRKCV5IpQ
-//Consumer Secret
-//DgpUuc1DIve5fsY6EsqGQh67dU4
-//Token
-//aomdOa44QuYgNuNKB9P9wIeNMvatbI03
-//Token Secret
-//zYCM9mUp7luRkgXO_JIcgNroKyE
-
 var swapping = false;
 
 var loc = {
@@ -89,7 +79,6 @@ function postPicture(number) {
 }
 
 function hipsterOverload() {
-  // $("body").addClass("overload");
   overloading();
 }
 
