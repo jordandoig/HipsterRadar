@@ -35,6 +35,19 @@
 
   </footer>
 
+
+  <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAMqwpVZmebjRRa7u6ENy4z07akfnsIIj8",
+      authDomain: "hipsterradar.firebaseapp.com",
+      databaseURL: "https://hipsterradar.firebaseio.com",
+      storageBucket: "hipsterradar.appspot.com",
+      messagingSenderId: "882979099435"
+    };
+    firebase.initializeApp(config);
+  </script>
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
   <script src="app.js" charset="utf-8"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbLFtIwl7aH8u4vkTY0I0X5oZmLuezv3A&callback=getMap"></script>
