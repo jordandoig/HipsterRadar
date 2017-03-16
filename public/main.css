@@ -14,12 +14,6 @@ header {
   height: 100px;
 }
 
-footer {
-  margin-top: 3%;
-  background-color: #C5C5C5;
-  height: 100px;
-}
-
 .googleMap {
   height: 400px;
 }
@@ -58,4 +52,12 @@ footer {
 .overload1 {
   background-color: yellow;
   color: black;
+}
+
+@media (min-width: 1153px) {
+  footer {
+    margin-top: 3%;
+    background-color: #C5C5C5;
+    height: 100px;
+  }
 }
