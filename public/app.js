@@ -107,6 +107,7 @@ function overloading() {
   $("body").addClass("overload1");
   $("header").addClass("overload");
   $("footer").addClass("overload");
+  var numRand = 0;
   swap = setInterval(function() {
     $("body").toggleClass("overload");
     $("body").toggleClass("overload1");
@@ -114,10 +115,10 @@ function overloading() {
     $("header").toggleClass("overload1");
     $("footer").toggleClass("overload");
     $("footer").toggleClass("overload1");
-    var numRand = Math.floor(Math.random() * 21);
     $(".hipsterImage").attr("src", "Images/HipsterOverload/" + numRand + ".png");
+    numRand++;
+    if (numRand === 21) {
+      numRand = 0;
+    }
   }, 100);
 }
-
-// $("body").removeClass("overload");
-// $("body").addClass("overload1");
