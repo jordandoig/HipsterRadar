@@ -103,6 +103,7 @@ function resetCSS() {
 }
 
 function overloading() {
+  $("h1").text("HipsterOverload!");
   $("body").addClass("overload1");
   $("header").addClass("overload");
   $("footer").addClass("overload");
@@ -113,6 +114,8 @@ function overloading() {
     $("header").toggleClass("overload1");
     $("footer").toggleClass("overload");
     $("footer").toggleClass("overload1");
+    var numRand = Math.floor(Math.random() * 21);
+    $(".hipsterImage").attr("src", "Images/HipsterOverload/" + numRand + ".png");
   }, 100);
 }
 
