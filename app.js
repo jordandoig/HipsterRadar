@@ -16,6 +16,9 @@ var loc = {
   lng: -104.9903
 };
 
+postPicture(39);
+postRating(39);
+
 function getMap () {
   var map = new google.maps.Map(document.querySelector(".googleMap"), {
     zoom: 13,
@@ -42,7 +45,11 @@ function getData (loc) {
     count += parseInt(data.total);
     postRating(count);
     postPicture(count);
-    console.log(count);
+    if (count > 55) {
+      hipsterOverload();
+    } else {
+      resetCSS();
+    }
   });
 }
 
@@ -67,5 +74,10 @@ function postPicture (number) {
   }
 }
 
-postPicture(39);
-postRating(60);
+function hipsterOverload () {
+  $("body").css({"background-color": "black", "color": "yellow"});
+}
+
+function resetCSS () {
+  $("body").css({"background-color": "white", "color": "black"});
+}

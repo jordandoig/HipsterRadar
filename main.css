@@ -48,3 +48,7 @@ footer {
 .rankingBar {
   width: 100%;
 }
+
+.overload {
+  background-color: black;
+}
