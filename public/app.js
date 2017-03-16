@@ -59,7 +59,7 @@ function postRating(number) {
   if (num <= 33) {
     $(".rankingBar").attr("style", "background-color: green; height: " + num + "%;");
   } else if (num <= 66) {
-    $(".rankingBar").attr("style", "background-color: yellow; height: " + num + "%;");
+    $(".rankingBar").attr("style", "background-color: #FFD700; height: " + num + "%;");
   } else {
     $(".rankingBar").attr("style", "background-color: red; height: " + num + "%;");
   }
@@ -108,6 +108,9 @@ function overloading() {
   $("header").addClass("overload");
   $("footer").addClass("overload");
   var numRand = 0;
+  var heightCycle = 110;
+  var colors = 0;
+  var colorCycle = ["red", "green", "#FFD700"];
   swap = setInterval(function() {
     $("body").toggleClass("overload");
     $("body").toggleClass("overload1");
@@ -119,6 +122,15 @@ function overloading() {
     numRand++;
     if (numRand === 21) {
       numRand = 0;
+    }
+    $(".rankingBar").attr("style", "background-color: " + colorCycle[colors] + "; height: " + heightCycle + "%;");
+    heightCycle += 33;
+    if (heightCycle > 125) {
+      heightCycle -= 125;
+    }
+    colors++;
+    if (colors === 3) {
+      colors = 0;
     }
   }, 100);
 }
