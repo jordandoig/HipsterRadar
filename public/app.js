@@ -89,7 +89,7 @@ function resetCSS() {
   $("header").removeClass("overload1");
   $("footer").removeClass("overload");
   $("footer").removeClass("overload1");
-  $("h1").text("HipsterRadar");
+  $("h1").text("HipsterRadar!");
 }
 
 function overloading() {
