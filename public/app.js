@@ -127,5 +127,7 @@ function overloading() {
 }
 
 function getSearchData() {
-  
+  $("#searchButton").click(function() {
+    var searchLocation = $(".searchBar").val();
+  });
 }
