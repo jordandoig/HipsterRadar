@@ -9,8 +9,8 @@ var loc = {
   lng: -104.9903
 };
 
-postPicture(39);
-postRating(39);
+postPicture(6);
+postRating(6);
 
 function getMap() {
   var map = new google.maps.Map(document.querySelector(".googleMap"), {
@@ -32,29 +32,42 @@ function getMap() {
 }
 
 function getData(loc) {
-  var latLng = loc.lat.toString() + "," + loc.lng.toString();
-  var count = 0;
-  $.post("https://yelp-api-q1.herokuapp.com/search/", {
-    location: latLng,
-    "radius_filter": 1000,
-    'category_filter': 'breweries,vinyl_records,divebars,comicbooks,bikes,musicvenues,usedbooks,barbers,thrift_stores,tattoo,vegan,vintage'
-  }, function(data) {
-    count += parseInt(data.total);
-    postRating(count);
-    postPicture(count);
-  });
+  var latLng = loc.lat.toString() + ',' + loc.lng.toString();
+  var zip;
+  $.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latLng +  '&key=AIzaSyCbLFtIwl7aH8u4vkTY0I0X5oZmLuezv3A')
+  .then(data => {
+    addressComps = data.results[0].address_components;
+    for (var i = 0; i < addressComps.length; i++) {
+      for (var j = 0; j < addressComps[i].types.length; j++) {
+        if (addressComps[i].types[j] === 'postal_code') {
+          zip = addressComps[i].long_name;
+          break;
+        }
+      }
+    }
+  })
+  .then(() => {
+    $.get('https://galvanize-cors.herokuapp.com/http://api.brewerydb.com/v2/locations?key=ce4d2d037906d953a49c8f9b9811830f&postalCode=' + zip)
+    .then(data => {
+      var numResults = data.totalResults;
+      if (numResults === undefined) {
+        numResults = 0;
+      }
+      postRating(numResults);
+      postPicture(numResults);
+    })
+  })
 }
 
-function postRating(number) {
-  var num = Math.round(number * (10 / 6));
-  if (num <= 33) {
-    $(".rankingBar").attr("style", "background-color: green; height: " + num + "%;");
-  } else if (num <= 66) {
-    $(".rankingBar").attr("style", "background-color: #FFD700; height: " + num + "%;");
+function postRating(num) {
+  if (num <= 3) {
+    $(".rankingBar").attr("style", "background-color: green; height: " + num + "0%;");
+  } else if (num <= 6) {
+    $(".rankingBar").attr("style", "background-color: #FFD700; height: " + num + "0%;");
   } else {
-    $(".rankingBar").attr("style", "background-color: red; height: " + num + "%;");
+    $(".rankingBar").attr("style", "background-color: red; height: " + num + "0%;");
   }
-  if (num > 100) {
+  if (num > 10) {
     if (swapping) {
       clearInterval(swap);
     }
@@ -69,8 +82,7 @@ function postRating(number) {
   }
 }
 
-function postPicture(number) {
-  var num = Math.round(number / 6);
+function postPicture(num) {
   if (num > 10) {
     var numRand = Math.floor(Math.random() * 21);
     $(".hipsterImage").attr("src", "Images/HipsterOverload/" + numRand + ".png");
@@ -126,8 +138,8 @@ function overloading() {
   }, 100);
 }
 
-function getSearchData() {
-  $("#searchButton").click(function() {
-    var searchLocation = $(".searchBar").val();
-  });
-}
+// function getSearchData() {
+//   $("#searchButton").click(function() {
+//     var searchLocation = $(".searchBar").val();
+//   });
+// }
